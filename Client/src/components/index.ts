@@ -3,7 +3,11 @@ export default class Main {
   public home;
   public create;
   public join;
-  constructor() {
+
+  public socket;
+
+  constructor(socket: any) {
+    this.socket = socket;
 
     this.body = document.getElementsByTagName('body')[0];
     this.home = document.getElementById('home');
