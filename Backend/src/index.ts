@@ -2,6 +2,13 @@
 import http from 'http';
 import { WebSocketServer } from 'ws';
 
+import { createClient } from 'redis';
+const client = createClient();
+client.on('error', (err) => console.log('Redis Client Error', err));
+
+(async function() {
+  await client.connect();
+})();
 
 const server = http.createServer();
 const ws = new WebSocketServer({
@@ -12,8 +19,9 @@ server.listen(5000, '0.0.0.0');
 const rooms = {};
 
 ws.on('connection', (conn) => {
-  conn.on('message', () => {
-    
+  conn.on('message', async (msg) => {
+    console.log(JSON.parse(msg));
+    await client.rPush('data', msg);
   });
 });
 

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev --respawn --transpile-only ./src/index.ts"
+    "start": "ts-node-dev --respawn --transpile-only ./src/index.ts",
+    "data": "ts-node-dev --respawn --transpile-only ./tools/index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,9 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "redis": "^4.2.0",
     "ws": "^8.8.1"
   }
 }
